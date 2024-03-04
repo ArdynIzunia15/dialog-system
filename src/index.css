@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
+
+body {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  height: 100vh;
+  width: auto;
+}
+
+.cs-container-dialog {
+  max-height: 200px;
+  overflow: scroll;
+  /* background-image: url("src/assets/speech_bubble_mid.png"); */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: cover;
+  border-right: 4px solid #010c0b;
+  border-right: 7px solid #e4eafd;
+  border-left: 4px solid #010c0b;
+  border-left: 7px solid #e4eafd;
+}
+
+.dialog-custom-margin {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.dialog-gradient {
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 212, 255);
+  background: radial-gradient(
+    circle,
+    rgba(0, 212, 255, 0) 0%,
+    rgba(255, 254, 255, 1) 100%
+  );
+}
+
+.pixel-image {
+  image-rendering: -moz-crisp-edges !important;
+  image-rendering: -o-crisp-edges !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  -ms-interpolation-mode: nearest-neighbor !important;
+}
+
+.background {
+  position: fixed;
+  height: 1792px;
+  width: 828px;
+  /* margin-left: -15px;
+  margin-top: -400px; */
+  z-index: -1;
+}
+
+.background-image {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* .slime {
+  position: absolute;
+  top: 375px;
+  left: 170px;
+  width: 68px;
+  height: auto;
+  object-fit: cover;
+} */
+
+.slime {
+  position: absolute; /* Or adjust based on visual feedback */
+  top: 42% /* Use exact value or relative positioning as needed */;
+  left: 40% /* Use exact value or relative positioning as needed */;
+  width: 68px;
+  height: auto;
+  object-fit: cover;
+}
+
+.overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 20px;
+  width: 100%;
+  height: 100%;
+  /* Adjust background color or transparency as needed */
+  background-color: rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.animated-text-background {
+  background-color: #fffeff !important;
+}
+
+#button-section {
+  border-right: 4px solid #010c0b;
+  border-right: 7px solid #e4eafd;
+  border-left: 4px solid #010c0b;
+  border-left: 7px solid #e4eafd;
+  background-color: #fffeff !important;
+}
+
+.altar-container {
+  position: relative;
+}
+
+#chat-bubble {
+  position: absolute; /* Or adjust based on visual feedback */
+  top: 39% /* Use exact value or relative positioning as needed */;
+  left: 50% /* Use exact value or relative positioning as needed */;
+  width: 60px;
+  height: auto;
+  object-fit: cover;
+  visibility: hidden;
+}
