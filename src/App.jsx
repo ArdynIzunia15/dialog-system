@@ -1,11 +1,18 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { useState } from "react";
 import { ReactTyped } from "react-typed";
+import useSound from "use-sound";
 
 // Harus coba imagenya jadiin cloud
 
 export default function App() {
+  const randomNumberInRange = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
   const dialogs = [
+    "Loading...",
+    "Click start to begin...",
     "Ah udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udah",
     "Sekarang ini dialog 2",
     "Selanjutnya ini dialog 3",
@@ -19,10 +26,25 @@ export default function App() {
     "https://github.com/ArdynIzunia15/dialog-system/blob/main/src/assets/ChatEmote.gif?raw=true",
   ];
   const [dialogIndex, setDialogIndex] = useState(0);
-  const [btnDisabled, setBtnDisabled] = useState(false);
+  const [btnDisabled, setBtnDisabled] = useState(true);
   const [chatBubbleVisible, setChatBubbleVisible] = useState("");
+  const [mainBtnText, setMainBtnText] = useState("Loading...");
+  const [mainBtnType, setMainBtnType] = useState(
+    "btn btn-secondary m-2 justify-content-end"
+  );
+  const [playClick] = useSound(
+    "/sounds/Click" + randomNumberInRange(1, 9) + ".WAV"
+  );
 
   const handleClickNext = () => {
+    // Play Sound
+    playClick();
+    // /sounds/Click1.WAV
+    if (dialogIndex == 1) {
+      setMainBtnText("NEXT");
+      setMainBtnType("btn btn-primary m-2 justify-content-end");
+      setDialogIndex(dialogIndex + 1);
+    }
     if (dialogIndex != dialogs.length - 1) {
       setDialogIndex(dialogIndex + 1);
     }
@@ -34,12 +56,20 @@ export default function App() {
   };
 
   const handleAnimationCompleted = () => {
-    setBtnDisabled(false);
-    setChatBubbleVisible("invisible");
+    if (dialogIndex == dialogs.length - 1) {
+      setBtnDisabled(true);
+    } else {
+      setBtnDisabled(false);
+      setChatBubbleVisible("invisible");
+    }
   };
 
   const handleBackgroundOnLoad = () => {
-    alert("Beres Bang");
+    // Beres load background
+    setMainBtnText("START");
+    setMainBtnType("btn btn-success m-2 justify-content-end");
+    setDialogIndex(dialogIndex + 1);
+    setBtnDisabled(false);
   };
 
   return (
@@ -74,10 +104,10 @@ export default function App() {
           className="animated-text-background cs-container-dialog dialog-custom-margin"
           id="button-section">
           <button
-            className="btn btn-primary m-2 justify-content-end"
+            className={mainBtnType}
             disabled={btnDisabled}
             onClick={handleClickNext}>
-            NEXT
+            {mainBtnText}
           </button>
         </div>
         <div className="row">
