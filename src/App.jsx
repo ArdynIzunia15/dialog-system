@@ -32,9 +32,7 @@ export default function App() {
   const [mainBtnType, setMainBtnType] = useState(
     "btn btn-secondary m-2 justify-content-end"
   );
-  const [playClick] = useSound(
-    "/sounds/Click" + randomNumberInRange(1, 9) + ".WAV"
-  );
+  const [playClick] = useSound("/sounds/Click2.WAV");
 
   const handleClickNext = () => {
     // Play Sound
@@ -58,6 +56,7 @@ export default function App() {
   const handleAnimationCompleted = () => {
     if (dialogIndex == dialogs.length - 1) {
       setBtnDisabled(true);
+      setChatBubbleVisible("invisible");
     } else {
       setBtnDisabled(false);
       setChatBubbleVisible("invisible");
