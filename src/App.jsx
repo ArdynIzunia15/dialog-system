@@ -102,6 +102,8 @@ export default function App() {
     // Play Bonus Music
     if (dialogIndex == 31) {
       playBGM();
+      setMainBtnType("btn btn-primary m-2 justify-content-end invisible");
+      setNoBtnType("btn btn-danger invisible");
     }
     if (dialogIndex == 13) {
       playMidBGM();
