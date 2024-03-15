@@ -5,16 +5,42 @@ import useSound from "use-sound";
 
 // Global Variables
 var isDialogCompleted = false;
-var totalBGM = 2;
 
 export default function App() {
   const dialogs = [
     "Loading...",
     "Click start to begin...",
-    "Ah udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udahAh udah",
-    "Sekarang ini dialog 2",
-    "Selanjutnya ini dialog 3",
-    "Dah beres bang",
+    "Hai Lilin :>",
+    "Ini aku, seseorang yang akhir-akhir ini selalu kamu panggil dengan sebutan 'koko'",
+    "Tapi sekarang aku beda bentuk aja... Aku di tengah sini. See ? Sebagai slime",
+    "Oke mungkin ini terlalu dramatis buatmu ya...",
+    "Tapi inilah yang gabisa aku sampein dengan kata-kata secara langsung.",
+    "Berawal dari interaksi kita di acara Ambassnya BINUS...",
+    "Yang dimana hanya sekedar seorang ambass..",
+    "yang bertanya ke panitia karena dia bingung kenapa internet BINUS lemot..",
+    "Ahirnya panitia tersebut meninggalkan hape miliknya untuk membagikan internet sebagai alternatif internet BINUS yang lemot...",
+    "Kalau dipikir-pikir..",
+    "Awal dari sebuah cerita panjang itu susah ditebak ya ?",
+    "Aku sendiri ga nyangka..", // Disini play. Index #13
+    "Bisa sampai di titik ini hubunganku dengan kamu..",
+    "Yang awalnya aku cuman nunjukin ke mamah...",
+    "Mah.. Cantik ga ?",
+    "Sambil nunjukin foto kita berdua di PVJ",
+    "Cantik katanya.. Sambil nanya, 'Katolik ga ?'",
+    "Aku bilang 'Iya dongse. Mau ma ?'",
+    "Boleeeehhh katanya.",
+    "Awalnya memang hanya sebuah awang-awang...",
+    "Sampai di titik ini yang dimana aku bisa dapetin kamu.",
+    "Aku ga tau apakah kamu orang yang tepat atau bukan...",
+    "Tapi cinta bukan tentang menemukan orang yang tepat...",
+    "tetapi bagaimana kita bisa menjadi orang yang tepat untuk satu sama lain.",
+    "So. Kamu siap jaga komitmen dan jaga hati ?",
+    "Makasih ya Lin.",
+    "Mungkin pesenku lainnya aku sampein nanti sebelum aku pulang",
+    "Makasih loh udah mau dengerin",
+    "Dah itu aja :>",
+    "*Villain Laugh*",
+    "Nih bonus lagu ♪♪♪\n---Silakan cermati liriknya--\nWhen I look into your eyes\nIt's like watching the night sky\nOr a beautiful sunrise\nWell there's so much they hold\nAnd just like them old stars\nI see that you've come so far\nTo be right where you are\nHow old is your soul?\nWell, I won't give up on us\nEven if the skies get rough\nI'm giving you all my love\nI'm still looking up\nAnd when you're needing your space\nTo do some navigating\nI'll be here patiently waiting\nTo see what you find\n'Cause even the stars they burn\nSome even fall to the earth\nWe've got a lot to learn\nGod knows we're worth it\nNo, I won't give up\nI don't wanna be someone who walks away so easily\nI'm here to stay and make the difference that I can make\nOur differences they do a lot to teach us how to use the tools and gifts\nWe got yeah we got a lot at stake\nAnd in the end you're still my friend at least we did intend\nFor us to work we didn't break, we didn't burn\nWe had to learn, how to bend without the world caving in\nI had to learn what I got, and what I'm not\nAnd who I am\nI won't give up on us\nEven if the skies get rough\nI'm giving you all my love\nI'm still looking up\nI'm still looking up\nWell, I won't give up on us (no I'm not giving up)\nGod knows I'm tough (I am tough) he knows (I am loved)\nWe got a lot to learn (we're alive, we are loved)\nGod knows we're worth it (and we're worth it)\nI won't give up on us\nEven if the skies get rough\nI'm giving you all my love\nI'm still looking up",
   ];
   const noVariants = [
     "GAK",
@@ -36,12 +62,8 @@ export default function App() {
 
   // Sounds and Media
   const [playClick] = useSound("/sounds/Click2.WAV");
-  const [bgmIndex, setBgmIndex] = useState(0);
-  const [playBGM] = useSound("/sounds/bgm/bgm" + bgmIndex + ".mp3", {
-    volume: 0.1,
-    onend: () => {
-      playNextBGM();
-    },
+  const [playBGM] = useSound("/sounds/bgm/Jason Mraz - I Won't Give Up.mp3", {
+    volume: 1,
   });
   const [playAmbience] = useSound("/sounds/Ambience.mp3", {
     loop: true,
@@ -54,6 +76,12 @@ export default function App() {
         isDialogCompleted = true;
         handleAnimationCompleted();
       },
+    }
+  );
+  const [playMidBGM] = useSound(
+    "/sounds/bgm/Yu-Peng Chen, HOYO-MiX - Hanachirusato.mp3",
+    {
+      volume: 0.2,
     }
   );
 
@@ -71,9 +99,19 @@ export default function App() {
       playAmbience();
     }
 
+    // Play Bonus Music
+    if (dialogIndex == 31) {
+      playBGM();
+    }
+    if (dialogIndex == 13) {
+      playMidBGM();
+    }
+
     // Condition for appearing NO button in last dialog
-    if (dialogIndex == dialogs.length + 1) {
+    if (dialogIndex == 25) {
       setNoBtnType("btn btn-danger");
+    } else {
+      setNoBtnType("btn btn-danger invisible");
     }
 
     // Condition for next dialog if not in the last index
@@ -82,17 +120,6 @@ export default function App() {
       console.log(dialogIndex);
       playDialog();
     }
-  };
-
-  const playNextBGM = () => {
-    if (bgmIndex == totalBGM - 1) {
-      setBgmIndex(0);
-    } else {
-      setBgmIndex(bgmIndex + 1);
-    }
-    console.log("Beres bang");
-    console.log("bgmIndex : " + bgmIndex);
-    playBGM();
   };
 
   const handleAnimationBegin = () => {
